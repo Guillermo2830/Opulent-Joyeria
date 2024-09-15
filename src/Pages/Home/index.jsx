@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../../Components/Layout"
 import Card from "../../Components/Card"
+
 
 const products = [
   {
@@ -153,7 +154,8 @@ const products = [
 ]
 
 const Home = () => {
-
+    const [items, setItems] = useState(null)
+    
     return (
       <Layout>
          <div className='flex justify-center w-80 items-center relative mb-4 '>
