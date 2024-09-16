@@ -3,13 +3,18 @@ import { useContext } from 'react';
 import { ShoppingCartContext } from '../../Context';
 import React from "react"
 
-const Card = ({name, category, price, image}) => {
+const Card = ({id, name, category, price, image, description}) => {
 
   const context = useContext(ShoppingCartContext)
+
+  const showProduct = () => {
+    context.openProductDetail()
+    context.setProductToShow({id, name, category, price, image, description})
+  }
   
     return (
 
-       <div className="bg-white cursor-pointer w-50 h-60">
+       <div className="bg-white cursor-pointer w-50 h-60" onClick={showProduct}>
           <figure className="relative mb-2 w-full h-4/5">
             <span  className="absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 px-3 py-0.5">{category}</span>
             <img className="w-full h-full object-cover rounded-lg" src={image} alt="" />

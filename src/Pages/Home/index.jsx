@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Layout from "../../Components/Layout"
 import Card from "../../Components/Card"
+import ProductDetail from "../../Components/ProductDetail";
 
 
 const products = [
@@ -10,6 +11,7 @@ const products = [
     category: "Anillos",
     price: 450000,
     image: '/images/anillos/anillo-diamante.webp',
+    description: "Anillo de diamante en oro Blanco, con acabados italianos, con un diamante en la parte superior de 30gr"
   },
   {
     id:2,
@@ -169,15 +171,18 @@ const Home = () => {
           });
           return (
            <Card
+          id={product.id}
           key={product.id}
           name={product.name}
           category={product.category}
           price={formattedPrice}
           image={product.image}
+          description={product.description}
           />
           ); 
         })}
         </div>
+        <ProductDetail />
       </Layout>
     )
   }
