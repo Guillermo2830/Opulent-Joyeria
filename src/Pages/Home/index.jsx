@@ -165,17 +165,14 @@ const Home = () => {
         </div>
         <div className="grid gap-7 grid-cols-4 w-full max-w-screen-lg">
         {products.map((product) => {
-          const formattedPrice = product.price.toLocaleString("es-CO", {
-            style: "currency",
-            currency: "COP",
-          });
+          const unformattedPrice = product.price;
           return (
            <Card
           id={product.id}
           key={product.id}
           name={product.name}
           category={product.category}
-          price={formattedPrice}
+          price={unformattedPrice}
           image={product.image}
           description={product.description}
           />
