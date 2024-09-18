@@ -1,7 +1,7 @@
-import { XMarkIcon } from '@heroicons/react/24/solid';
+
 import { ChevronRightIcon } from '@heroicons/react/16/solid';
 
-const OrdersCard = ({totalPrice, totalProducts}) => {
+const OrdersCard = ({date, totalPrice, totalProducts}) => {
 
     
     return(
@@ -9,7 +9,7 @@ const OrdersCard = ({totalPrice, totalProducts}) => {
            <div className='flex justify-between w-full'>
 
             <p className='flex flex-col'>
-            <span className='font-light'>01.02.2024</span>
+            <span className='font-light'>{date}</span>
             <span className='font-light'>{totalProducts} articulos</span>
             </p>
             <p className='flex items-center gap-2'>

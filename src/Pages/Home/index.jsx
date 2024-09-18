@@ -1,170 +1,55 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Layout from "../../Components/Layout"
 import Card from "../../Components/Card"
 import ProductDetail from "../../Components/ProductDetail";
+import { ShoppingCartContext } from "../../Context";
+import { useParams } from "react-router-dom";
 
-
-const products = [
-  {
-    id:1,
-    name: "Anillo Diamante",
-    category: "Anillos",
-    price: 450000,
-    image: '/images/anillos/anillo-diamante.webp',
-    description: "Anillo de diamante en oro Blanco, con acabados italianos, con un diamante en la parte superior de 30gr"
-  },
-  {
-    id:2,
-    name: "Anillo",
-    category: "Anillos",
-    price: 250000,
-    image: '/images/anillos/anillos.jpg',
-  },
-  {
-    id:3,
-    name: "Anillo",
-    category: "Anillos",
-    price: 250000,
-    image: '/images/anillos/anillos.jpg',
-  },
-  {
-    id:4,
-    name: "Argolla Oro Ita",
-    category: "Argollas",
-    price: 200000,
-    image: '/images/argollas/argolla-1.jpg',
-  },
-  {
-    id:5,
-    name: "Argolla Gucci",
-    category: "Argollas",
-    price: 280000,
-    image: '/images/argollas/argolla-2.jpg',
-  },
-  {
-    id:6,
-    name: "Argolla Real",
-    category: "Argollas",
-    price: 300000,
-    image: '/images/argollas/argolla-3.jpg',
-  },
-  {
-    id:7,
-    name: "Argolla Channel",
-    category: "Argollas",
-    price: 250000,
-    image: '/images/argollas/argolla-4.jpg',
-  },
-  {
-    id:8,
-    name: "Argolla Diamantada",
-    category: "Argollas",
-    price: 350000,
-    image: '/images/argollas/argolla-5.jpg',
-  },
-  {
-    id:9,
-    name: "Argolla Gucci",
-    category: "Argollas",
-    price: 300000,
-    image: '/images/argollas/argolla-6.jpg',
-  },
-  {
-    id:10,
-    name: "Cadena Virgen",
-    category: "Cadenas",
-    price: 350000,
-    image: '/images/cadenas/cadena-cristo-2.jpg',
-  },
-  {
-    id:11,
-    name: "Cadena Jesucristo",
-    category: "Cadenas",
-    price: 250000,
-    image: '/images/cadenas/cadena-cristo.jpg',
-  },
-  {
-    id:12,
-    name: "Cadena Rolex",
-    category: "Cadenas",
-    price: 400000,
-    image: '/images/cadenas/cadena-lx.jpg',
-  },
-  {
-    id:13,
-    name: "Cadena Rolex Diamantada",
-    category: "Cadenas",
-    price: 250000,
-    image: '/images/cadenas/cadena-rolex.jpg',
-  },
-  {
-    id:14,
-    name: "Rosario Oro Italiano",
-    category: "Cadenas",
-    price: 500000,
-    image: '/images/cadenas/rosario-2.jpg',
-  },
-  {
-    id:15,
-    name: "Rosario Oro y Plata",
-    category: "Cadenas",
-    price: 250000,
-    image: '/images/cadenas/rosario-3.jpg',
-  },
-  {
-    id:16,
-    name: "Rosario Oro",
-    category: "Cadenas",
-    price: 250000,
-    image: '/images/cadenas/rosario.jpg',
-  },
-  {
-    id:17,
-    name: "Esclava Oro",
-    category: "Esclavas",
-    price: 250000,
-    image: '/images/esclavas/esclava-1.jpg',
-  },
-  {
-    id:18,
-    name: "Esclava Gucci",
-    category: "Esclavas",
-    price: 250000,
-    image: '/images/esclavas/esclava-2.jpg',
-  },
-  {
-    id:19,
-    name: "Esclava Rolex",
-    category: "Esclavas",
-    price: 250000,
-    image: '/images/esclavas/esclava-3.jpg',
-  },
-  {
-    id:20,
-    name: "Esclava Oro y Plata",
-    category: "Esclavas",
-    price: 250000,
-    image: '/images/esclavas/esclava-4.jpg',
-  },
-  {
-    id:21,
-    name: "Esclava Diamantada",
-    category: "Esclavas",
-    price: 250000,
-    image: '/images/esclavas/esclava-5.jpg',
-  },
-]
 
 const Home = () => {
-    const [items, setItems] = useState(null)
+    const {items} = useContext(ShoppingCartContext);
+    const [searchTerm, setSearchTerm] = useState(''); // Estado para el término de búsqueda
+    const {category} = useParams();
     
+    //funcion para filtrar por categoria
+    const filteredItems = items.filter((product) => {
+      const matchesCategory = category
+        ? product.category.toLowerCase() === category.toLowerCase()
+        : true; 
+      const matchesSearchTerm = product.name.toLowerCase().includes(searchTerm);
+      return matchesCategory && matchesSearchTerm; 
+    });
+    
+  
+    // Función para manejar la búsqueda
+    const handleSearch = (event) => {
+    setSearchTerm(event.target.value.toLowerCase()); // Actualizar el estado con el valor del input
+  };
+
+  // Limpiar el término de búsqueda cuando cambia la categoría
+      useEffect(() => {
+        setSearchTerm('');
+    }, [category]);
+
+
+  
+
     return (
       <Layout>
          <div className='flex justify-center w-80 items-center relative mb-4 '>
-            <h1 className='font-medium text-xl'>Productos exclusivos</h1>
+            <h1 className='font-medium text-xl'>JOYERIA EXCLUSIVA</h1>
         </div>
+        <div className="flex justify-center w-90 items-center mb-4 text-justify">
+          <p className="font-normal">Disfruta de las joyas de mas alta calidad en Colombia</p>
+        </div>
+        <input 
+        type="text" 
+        placeholder="Busca tu producto" className="rounded-lg border border-black w-80 p-4 mb-4 focus:outline-none" 
+        onChange={handleSearch} 
+        value={searchTerm} />
+
         <div className="grid gap-7 grid-cols-4 w-full max-w-screen-lg">
-        {products.map((product) => {
+        {filteredItems.map((product) => {
           const unformattedPrice = product.price;
           return (
            <Card

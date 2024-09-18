@@ -16,8 +16,11 @@ const CheckOutSideMenu = () => {
     }
  
     const handleCheckout = () => {
+        const today = new Date();
+        const formattedDate = today.toISOString().split('T')[0];
+
         const orderToAdd = {
-            date: '01.02.2024',
+            date: formattedDate,
             products: context.cartProducts,
             totalProducts: context.cartProducts.length,
             totalPrice: totalPrice(context.cartProducts)

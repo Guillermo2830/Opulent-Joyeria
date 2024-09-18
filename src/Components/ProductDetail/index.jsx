@@ -25,9 +25,9 @@ const ProductDetail = () => {
                         <img className='w-full h-full' src={productToShow.image} alt={productToShow.name} />
                     </figure>
                     <p className='flex flex-col p-6'>
-                        <span className='font-medium text-2xl mb-2'>{productToShow.price}</span>
+                        <span className='font-medium text-2xl mb-2'>${productToShow.price}</span>
                         <span className='font-medium text-md'>{productToShow.name}</span>
-                        <span className='font-light text-sm'>{productToShow.description}</span>
+                        <span className='font-light text-sm text-justify'>{productToShow.description}</span>
                     </p>
                 </>
             )}

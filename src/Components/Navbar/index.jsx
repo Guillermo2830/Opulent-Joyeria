@@ -19,33 +19,33 @@ const Navbar = () => {
                </NavLink>
             </li>
             <li>
-                <NavLink to='/todo' className={({ isActive}) => isActive ? activeStyle : undefined }>
+                <NavLink to='/category/todo' className={({ isActive}) => isActive ? activeStyle : undefined }>
                     Todo
                 </NavLink>
             </li>
             <li>
-                <NavLink to='/anillos' className={({ isActive}) => isActive ? activeStyle : undefined }>
+                <NavLink to='/category/anillos' className={({ isActive}) => isActive ? activeStyle : undefined }>
                     Anillos
                 </NavLink>
             </li>
             <li>
-                <NavLink to='/cadenas' className={({ isActive}) => isActive ? activeStyle : undefined }>
+                <NavLink to='/category/cadenas' className={({ isActive}) => isActive ? activeStyle : undefined }>
                     Cadenas
                 </NavLink>
             </li>
             <li>
-                <NavLink to='/pulseras' className={({ isActive}) => isActive ? activeStyle : undefined }>
-                    Pulseras
+                <NavLink to='/category/esclavas' className={({ isActive}) => isActive ? activeStyle : undefined }>
+                    Esclavas
                 </NavLink>
             </li>
             <li>
-                <NavLink to='/reloj' className={({ isActive}) => isActive ? activeStyle : undefined }>
+                <NavLink to='/category/relojes' className={({ isActive}) => isActive ? activeStyle : undefined }>
                     Relojes
                 </NavLink>
             </li>
             <li>
-                <NavLink to='/aretes' className={({ isActive}) => isActive ? activeStyle : undefined }>
-                    Aretes
+                <NavLink to='/category/argollas' className={({ isActive}) => isActive ? activeStyle : undefined }>
+                    Argollas
                 </NavLink>
             </li>
           </ul>
@@ -73,10 +73,12 @@ const Navbar = () => {
             </li>
 
             <li>
-            <div className="flex items-center">
-                <ShoppingBagIcon className="w-6 h-6 text-black"></ShoppingBagIcon>
-                   <span className="ml-1">{context.count}</span>
-            </div>
+            <NavLink to='/my-orders' className={({ isActive }) => isActive ? activeStyle : undefined}>
+                <div className="flex items-center">
+                    <ShoppingBagIcon className="w-6 h-6 text-black" />
+                    <span className="ml-1">{context.count}</span>
+                </div>
+             </NavLink>
             </li>
 
           </ul>
