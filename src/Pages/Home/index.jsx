@@ -36,7 +36,8 @@ const Home = () => {
 
     return (
       <Layout>
-         <div className='flex justify-center w-80 items-center relative mb-4 '>
+        
+        <div className='flex justify-center w-80 items-center relative mb-4'>
             <h1 className='font-medium text-xl'>JOYERIA EXCLUSIVA</h1>
         </div>
         <div className="flex justify-center w-90 items-center mb-4 text-justify">
@@ -64,7 +65,7 @@ const Home = () => {
           ); 
         })}
         </div>
-        <ProductDetail />
+        <ProductDetail /> 
       </Layout>
     )
   }
